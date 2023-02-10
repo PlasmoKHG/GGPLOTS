@@ -1,0 +1,47 @@
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+df<-read.csv("/home/mku-bioinformatics/Documents/Ripr_frequency.csv")
+head(df)
+df_1=ggplot(df, aes(Codon, Prevalence, fill=Region))+
+  geom_bar(stat ="identity", width = 0.7, position = position_dodge() )+
+  coord_flip()+
+  ggtitle("pfrip")+
+  theme_classic()+
+  theme(axis.title = element_text(size = 10, face = "bold"))+
+  theme(plot.title = element_text(hjust =0.5, face = "bold.italic", size = 10))
+#Plotting PfRh5 frequency
+df<-read.csv("/home/mku-bioinformatics/Documents/Rh5_frequency.csv")
+head(df)
+df_2=ggplot(df, aes(Codon, Prevalence, fill=Region))+
+  geom_bar(stat ="identity", width = 0.7, position = position_dodge() )+
+  coord_flip()+
+  ggtitle("pfrh5")+
+  theme_classic()+
+  theme(axis.title = element_text(size = 10, face = "bold"))+
+  theme(plot.title = element_text(hjust =0.5, face = "bold.italic", size = 10))
+#Plotting PfCyRPA frequency
+df<-read.csv("/home/mku-bioinformatics/Documents/CyRPA_frequency.csv")
+head(df)
+df_3=ggplot(df, aes(Codon, Prevalence, fill=Region))+
+  geom_bar(stat ="identity", width = 0.7, position = position_dodge() )+
+  coord_flip()+
+  ggtitle("pfcyrpa")+
+  theme_classic()+
+  theme(axis.title = element_text(size = 10, face = "bold"))+
+  theme(plot.title = element_text(hjust =0.5, face = "bold.italic", size = 10))
+#Plotting Pfp113 frequency
+
+df<-read.csv("/home/mku-bioinformatics/Documents/P113_frequency.csv")
+head(df)
+df_4=ggplot(df, aes(Codon, Prevalence, fill=Region))+
+  geom_bar(stat ="identity", width = 0.7, position = position_dodge() )+
+  coord_flip()+
+  ggtitle("pfp113")+
+  theme_classic()+
+  theme(axis.title = element_text(size = 10, face = "bold"))+
+  theme(plot.title = element_text(hjust =0.5, face = "bold.italic", size = 10))
+#Combine the plots 
+library(cowplot)
+plot_grid(df_1,df_2,df_3,df_4, labels = "AUTO", label_size = 12)+
+theme(plot.background = element_rect(colour = "black", nrow(2)))
